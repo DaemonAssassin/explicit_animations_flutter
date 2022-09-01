@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'animated_builder/translation_widget.dart';
+import 'animated_builder/size_widget.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: TranslationWidget(),
+          child: SizeWidget(),
         ),
       ),
     );
