@@ -1,3 +1,4 @@
+import 'package:explicit_animations/animated_builder/opacity_widget.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -12,7 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
-        body: Container(),
+        body: const Center(
+          child: OpacityWidget(),
+        ),
       ),
     );
   }
