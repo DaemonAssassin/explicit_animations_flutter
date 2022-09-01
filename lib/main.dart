@@ -1,5 +1,6 @@
-import 'package:explicit_animations/animated_builder/opacity_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'animated_builder/translation_widget.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -11,7 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: OpacityWidget(),
+      home: Scaffold(
+        body: Center(
+          child: TranslationWidget(),
+        ),
+      ),
     );
   }
 }
