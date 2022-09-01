@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'explicit_animations/translated_container.dart';
+import 'explicit_animations/sizing_container.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: TranslatedContainer(),
+          child: SizingContainer(),
         ),
       ),
     );
