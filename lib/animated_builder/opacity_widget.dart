@@ -18,7 +18,12 @@ class _OpacityWidgetState extends State<OpacityWidget>
     super.initState();
     _controller =
         AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.bounceInOut,
+      ),
+    );
   }
 
   @override
@@ -29,31 +34,53 @@ class _OpacityWidgetState extends State<OpacityWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AnimatedBuilder(
-          animation: _animation,
-          builder: (context, child) {
-            return Opacity(
-              opacity: _animation.value,
-              child: child,
-            );
-          },
-          child: _buildContainer(),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _animation.value,
+                  child: child,
+                );
+              },
+              child: _buildContainer(),
+            ),
+            addVerticalSpace(30.0),
+            buildButton(
+              text: 'Show',
+              onPressed: () {
+                if (_controller.status == AnimationStatus.completed) {
+                  _controller.reverse();
+                } else {
+                  _controller.forward();
+                }
+              },
+            ),
+          ],
         ),
-        addVerticalSpace(30.0),
-        buildButton(
-          text: 'Show',
-          onPressed: () {
-            if (_controller.status == AnimationStatus.completed) {
-              _controller.reverse();
-            } else {
-              _controller.forward();
-            }
-          },
+      ),
+      floatingActionButton: TweenAnimationBuilder<Offset>(
+        tween: Tween<Offset>(
+          begin: const Offset(0.0, -800.0),
+          end: const Offset(0.0, 0.0),
         ),
-      ],
+        duration: const Duration(seconds: 2),
+        builder: (context, value, child) {
+          return Transform.translate(
+            offset: value,
+            child: child,
+          );
+        },
+        curve: Curves.bounceOut,
+        child: FloatingActionButton(
+          onPressed: () {},
+        ),
+      ),
     );
   }
 

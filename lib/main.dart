@@ -10,13 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: const Center(
-          child: OpacityWidget(),
-        ),
-      ),
+    return const MaterialApp(
+      home: OpacityWidget(),
     );
   }
 }
